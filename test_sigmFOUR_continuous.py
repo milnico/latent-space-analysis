@@ -213,7 +213,7 @@ def linear_fit_function(x,a):
 latent_space = np.squeeze(latent_space)
 from sklearn.metrics import mean_absolute_error
 print(mean_absolute_error(KSI,latent_space))
-input("ws")
+
 
 loadings_fit = []
 for j in range(obs_var):
