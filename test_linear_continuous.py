@@ -116,7 +116,7 @@ my_data = np.append(X, NL_X, axis=1)
 
 
 def loss_function(x_hat, x, mu, logvar):
-    # Calcola la binary cross entropy tra l'input originale e l'output ricostruito
+    # Calcola la binary cross entropy tra l' originale e l'output ricostruito
     mae = nn.MSELoss(reduction="sum")
     MAE = mae(x_hat, x)
 
@@ -160,14 +160,14 @@ model.eval()
 latent_space = []
 with torch.no_grad():
     for batch_idx, data in enumerate(train_loader):
-        inputs, _ = data
-        inputs = inputs.to(device)
-        _, mu, _ = model(inputs)
+        s, _ = data
+        s = s.to(device)
+        _, mu, _ = model(s)
         latent_space.append(mu.cpu().detach().numpy())
 
 latent_space = np.concatenate(latent_space, axis=0)
 print(np.max(latent_space))
-input("wss")
+("wss")
 rec = []
 for i in range(np.shape(my_data)[0]):
     data, _ = my_dataset[i:i + 1]
@@ -213,7 +213,7 @@ def linear_fit_function(x,a):
 latent_space = np.squeeze(latent_space)
 from sklearn.metrics import mean_absolute_error
 print(mean_absolute_error(KSI,latent_space))
-input("ws")
+
 popt_nl, _ = curve_fit(linear_fit_function, latent_space, rec_train[:, -1])
 print(popt_nl)
 loadings_fit_nl = popt_nl[0]
